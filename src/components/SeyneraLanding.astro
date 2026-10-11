@@ -1,0 +1,117 @@
+---
+import Base from '../layouts/Base.astro';
+import type { Language } from '../i18n';
+import { seyneraText } from '../seynera-i18n';
+import { seyneraReleaseUrl } from '../seynera-release';
+const { lang } = Astro.props as {lang:Language};
+const t = seyneraText[lang];
+const home = lang === 'ru' ? '/' : '/en/';
+const libraryImage = lang === 'ru' ? '/images/seynera-library-final-ru-light.png' : '/images/seynera-library-final-en-light.png';
+const darkLibraryImage = lang === 'ru' ? '/images/seynera-library-final-ru-dark.png' : '/images/seynera-library-final-en-dark.png';
+const readingImage = lang === 'ru' ? '/images/seynera-reading-final-ru-light.png' : '/images/seynera-reading-final-en-dark.png';
+const readingSettingsImage = lang === 'ru' ? '/images/seynera-reading-settings-final-ru-light.png' : '/images/seynera-reading-settings-final-en-dark.png';
+const galleryImages = [libraryImage, darkLibraryImage, readingImage, readingSettingsImage];
+const featureMarks = ['▤','▣','◫','☷','↡','☰'];
+const comfortMarks = ['◇','☷','▦','☼'];
+---
+<Base lang={lang} title="Seynera Reader — As Is Works" path="/seynera-reader/">
+  <main class="seynera">
+    <section class="sr-hero sr-wrap">
+      <div class="sr-hero-copy">
+        <div class="sr-eyebrow">{t.eyebrow}</div>
+        <div class="sr-title-row"><h1 class="serif">Seynera<br/>Reader</h1><span class="sr-version">{t.version}</span></div>
+        <p class="sr-lead">{t.heroDescription}</p>
+        <ul class="sr-hero-benefits">{t.heroBenefits.map((benefit,i)=><li><span aria-hidden="true">{['▤','☷','▦'][i]}</span>{benefit}</li>)}</ul>
+        <div class="sr-actions"><a class="sr-primary" href="#features">{t.featuresButton} <span aria-hidden="true">↓</span></a><span class="sr-status"><span aria-hidden="true"></span>{t.status}</span></div>
+      </div>
+      <div class="sr-hero-art"><div class="sr-environment" role="img" aria-label="Books, plant and warm light"></div><div class="sr-laptop"><img src={libraryImage} alt={t.libraryScreenshot}/></div></div>
+    </section>
+
+    <section class="sr-rhythm sr-section sr-wrap" id="features">
+      <div><div class="sr-kicker">01 / SEYNERA READER</div><h2 class="serif">{t.rhythmTitle}</h2><p class="sr-intro">{t.rhythmDescription}</p></div>
+      <ul class="sr-feature-list">{t.features.map((feature,i)=><li><span aria-hidden="true">{featureMarks[i]}</span>{feature}</li>)}</ul>
+    </section>
+
+    <section class="sr-showcase sr-wrap" id="library">
+      <div class="sr-showcase-copy"><div class="sr-kicker">02 / LIBRARY</div><h2 class="serif">{t.libraryTitle}</h2><p>{t.libraryDescription}</p></div>
+      <figure class="sr-real-shot"><img src={libraryImage} alt={t.libraryScreenshot}/></figure>
+    </section>
+
+    <section class="sr-showcase sr-reading sr-wrap" id="reading">
+      <div class="sr-showcase-copy"><div class="sr-kicker">03 / READING</div><h2 class="serif">{t.readingTitle}</h2><p>{t.readingDescription}</p><ul class="sr-reading-highlights">{t.readingHighlights.map(item=><li>{item}</li>)}</ul><div class="sr-theme-note"><span aria-hidden="true">◐</span><div><strong>{t.themesTitle}</strong><p>{t.themesDescription}</p></div></div></div>
+      <figure class="sr-real-shot sr-reading-shot"><img src={readingImage} alt={t.readingScreenshot}/></figure>
+    </section>
+
+    <section class="sr-gallery sr-wrap" id="gallery">
+      <div class="sr-kicker">04 / GALLERY</div><h2 class="serif">{t.galleryTitle}</h2><p class="sr-intro">{t.galleryIntro}</p>
+      <div class="sr-gallery-grid">{galleryImages.map((src,i)=><button type="button" class="sr-gallery-item" data-gallery-src={src} data-gallery-alt={t.galleryImages[i]} aria-label={`${t.galleryOpen}: ${t.galleryImages[i]}`}><img src={src} alt=""/><span>{t.galleryImages[i]} <span aria-hidden="true">↗</span></span></button>)}</div>
+    </section>
+    <dialog class="sr-gallery-dialog" aria-label={t.galleryTitle}><button type="button" class="sr-gallery-close" aria-label={t.galleryClose}>×</button><img alt=""/><p></p></dialog>
+
+    <section class="sr-comfort sr-section sr-wrap" id="comfort"><div class="sr-kicker">05 / COMFORT</div><h2 class="serif">{t.comfortTitle}</h2><div class="sr-comfort-grid">{t.comfort.map((item,i)=><div class="sr-comfort-item"><span aria-hidden="true">{comfortMarks[i]}</span><h3>{item[0]}</h3><p>{item[1]}</p></div>)}</div></section>
+
+    <section class="sr-future sr-section sr-wrap" id="future"><div class="sr-kicker">06 / NEXT</div><h2 class="serif">{t.nextTitle}</h2><p class="sr-intro">{t.nextIntro}</p><div class="sr-future-list">{t.future.map(item=><article><div><h3>{item[0]}</h3><p>{item[2]}</p></div><span>{item[1]}</span></article>)}</div></section>
+
+    <section class="sr-lower sr-wrap"><div><div class="sr-kicker">AS IS WORKS / SEYNERA READER</div><h2 class="serif">{t.releaseTitle}</h2><p class="sr-release-description">{t.releaseDescription}</p><div class="sr-release-actions">{seyneraReleaseUrl ? <><a class="sr-primary" href={seyneraReleaseUrl}>{t.download} <span aria-hidden="true">↓</span></a><a class="sr-release-link" href={seyneraReleaseUrl}>{t.releaseLink} ↗</a></> : <><button class="sr-primary sr-primary-disabled" type="button" disabled>{t.download} <span aria-hidden="true">↓</span></button><span class="sr-coming-soon">{t.comingSoon}</span></>}</div></div><a href={`${home}#programs`}>← {t.back}</a></section>
+  </main>
+</Base>
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('.sr-gallery-dialog');
+  const dialogImage = dialog?.querySelector('img');
+  const dialogCaption = dialog?.querySelector('p');
+  document.querySelectorAll<HTMLButtonElement>('.sr-gallery-item').forEach(button => button.addEventListener('click', () => {
+    if (!dialog || !dialogImage || !dialogCaption) return;
+    dialogImage.src = button.dataset.gallerySrc || '';
+    dialogImage.alt = button.dataset.galleryAlt || '';
+    dialogCaption.textContent = button.dataset.galleryAlt || '';
+    dialog.showModal();
+  }));
+  dialog?.querySelector('.sr-gallery-close')?.addEventListener('click', () => dialog.close());
+  dialog?.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+</script>
+<style>
+.seynera{--sr-paper:#f3eee6;--sr-paper-deep:#ece3d7;--sr-ink:#29211e;--sr-muted:#665e58;--sr-wine:#713c3b;--sr-line:#d8cec1;color:var(--sr-ink);background:var(--sr-paper)}:global(.dark) .seynera{--sr-paper:#24211f;--sr-paper-deep:#302826;--sr-ink:#f5ede3;--sr-muted:#c2b4aa;--sr-wine:#d4907e;--sr-line:#554742}.sr-wrap{max-width:1440px;margin:auto;padding-inline:clamp(24px,5vw,72px)}.sr-section{padding-block:100px}.sr-kicker,.sr-eyebrow{color:var(--sr-wine);font-size:11px;letter-spacing:.25em;font-weight:700}.sr-hero{min-height:690px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:35px;padding-block:60px 88px}.sr-hero-copy{position:relative;z-index:1}.sr-eyebrow:before{content:'';display:inline-block;width:38px;border-top:1px solid currentColor;margin:0 15px 4px 0}.sr-title-row{display:flex;align-items:flex-start;gap:22px;margin-top:30px}.sr-hero h1{font-size:clamp(64px,7vw,102px);line-height:1.04;letter-spacing:-.065em;margin:0}.sr-version{display:inline-block;border:1px solid var(--sr-line);border-radius:30px;color:var(--sr-wine);font-size:12px;white-space:nowrap;padding:8px 12px;margin-top:13px}.sr-lead{font-size:19px;line-height:1.5;max-width:480px;color:var(--sr-muted);margin:32px 0}.sr-hero-benefits{list-style:none;padding:0;margin:0;display:flex;gap:24px;max-width:570px}.sr-hero-benefits li{flex:1;font-size:13px;line-height:1.4}.sr-hero-benefits span{display:block;color:var(--sr-wine);font-size:24px;margin-bottom:8px}.sr-actions{display:flex;align-items:center;gap:26px;margin-top:35px;flex-wrap:wrap}.sr-primary{background:var(--sr-wine);color:#fff;padding:14px 20px;min-width:170px;display:inline-flex;justify-content:space-between;border-radius:3px;font-size:15px}.sr-primary:hover{filter:brightness(1.13)}.sr-status{display:inline-flex;align-items:center;gap:9px;color:var(--sr-wine);font-size:13px}.sr-status>span{width:7px;height:7px;background:currentColor;border-radius:50%}.sr-hero-art{min-width:0;position:relative}.sr-environment{height:545px;background:url('/images/hero.jpg') center/cover no-repeat;border-radius:3px}.sr-laptop{position:absolute;left:-30px;right:25px;bottom:28px;background:#111;border:8px solid #1c1c1c;border-bottom-width:13px;border-radius:12px 12px 4px 4px;box-shadow:0 20px 40px #1b161350}.sr-laptop img{display:block;width:100%;height:auto;aspect-ratio:1264/781;object-fit:cover;object-position:top}.sr-laptop:after{content:'';position:absolute;left:-6%;right:-6%;height:12px;bottom:-22px;background:linear-gradient(#b5aea4,#6d6761);border-radius:0 0 55% 55%}.sr-real-shot{margin:0;border:1px solid var(--sr-line);box-shadow:0 22px 50px #3b2a1b12;overflow:hidden;background:#f7f4ef}.sr-real-shot img{display:block;width:100%;height:auto}.sr-rhythm{display:grid;grid-template-columns:1fr 1fr;gap:10%;border-top:1px solid var(--sr-line)}.sr-rhythm h2,.sr-showcase h2,.sr-comfort h2,.sr-future h2{font-size:clamp(40px,4vw,64px);line-height:1.18;letter-spacing:-.045em;margin:18px 0 22px}.sr-intro,.sr-showcase-copy>p{font-size:17px;line-height:1.65;color:var(--sr-muted);max-width:550px}.sr-feature-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;align-content:center;gap:0 28px}.sr-feature-list li{display:flex;align-items:center;gap:16px;min-height:78px;border-bottom:1px solid var(--sr-line);font-size:15px;line-height:1.35}.sr-feature-list span{font-size:24px;color:var(--sr-wine);flex:none;width:27px;text-align:center}.sr-showcase{display:grid;grid-template-columns:.75fr 1.25fr;gap:7%;align-items:center;padding-block:95px;background:var(--sr-paper-deep)}.sr-showcase-copy{padding-block:20px}.sr-shot{min-height:420px;border:1px solid var(--sr-line);background:linear-gradient(135deg,#f8f5ee,#e7ddcf);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px;color:#74645a;box-shadow:0 22px 50px #3b2a1b12}.sr-shot-icon{font-size:56px;line-height:1;color:#ab7864;margin-bottom:24px}.sr-shot strong{font-size:18px;font-weight:500}.sr-shot small{font-size:12px;max-width:260px;line-height:1.5;margin-top:12px}.sr-reading{background:var(--sr-paper);grid-template-columns:1fr 1fr}.sr-shot-reading{background:linear-gradient(135deg,#eee8df,#d8cbbd)}.sr-theme-note{display:flex;align-items:flex-start;gap:18px;border-top:1px solid var(--sr-line);margin-top:35px;padding-top:25px}.sr-theme-note>span{font-size:27px;color:var(--sr-wine)}.sr-theme-note strong{font-size:15px}.sr-theme-note p{font-size:14px;line-height:1.5;color:var(--sr-muted);margin:6px 0 0}.sr-comfort{border-top:1px solid var(--sr-line)}.sr-comfort-grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:52px}.sr-comfort-item{padding:0 28px;border-right:1px solid var(--sr-line)}.sr-comfort-item:first-child{padding-left:0}.sr-comfort-item:last-child{border:0}.sr-comfort-item>span{font-size:33px;color:var(--sr-wine)}.sr-comfort-item h3{font-size:17px;margin:21px 0 8px}.sr-comfort-item p{font-size:14px;line-height:1.55;color:var(--sr-muted);margin:0}.sr-future{background:var(--sr-paper-deep)}.sr-future-list{margin-top:45px}.sr-future-list article{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;border-top:1px solid var(--sr-line);padding:25px 0}.sr-future-list article:last-child{border-bottom:1px solid var(--sr-line)}.sr-future-list h3{font-size:20px;margin:0 0 8px}.sr-future-list p{font-size:15px;line-height:1.5;color:var(--sr-muted);margin:0}.sr-future-list span{white-space:nowrap;color:var(--sr-wine);font-size:12px;border:1px solid var(--sr-line);border-radius:30px;padding:8px 12px}.sr-lower{padding-block:90px;display:flex;justify-content:space-between;align-items:end;gap:35px}.sr-lower h2{font-size:clamp(35px,4vw,60px);line-height:1.2;letter-spacing:-.035em;max-width:850px;margin:17px 0 20px}.sr-lower>a{white-space:nowrap;font-size:14px;color:var(--sr-wine);padding-bottom:8px}.sr-lower>a:hover{text-decoration:underline}:global(.dark) .sr-shot{background:linear-gradient(135deg,#3d3430,#2a2524);color:#d0bfb3;box-shadow:none}@media(max-width:1024px){.sr-hero{min-height:0;gap:28px}.sr-hero h1{font-size:clamp(56px,7vw,80px)}.sr-version{margin-top:4px}.sr-environment{height:460px}.sr-showcase{gap:4%}.sr-comfort-grid{grid-template-columns:repeat(2,1fr);row-gap:36px}.sr-comfort-item:nth-child(2){border:0}.sr-comfort-item:nth-child(3){padding-left:0}}@media(max-width:760px){.sr-wrap{padding-inline:24px}.sr-section{padding-block:65px}.sr-hero{display:flex;flex-direction:column;align-items:stretch;padding-block:54px 60px;gap:42px}.sr-title-row{display:block;margin-top:24px}.sr-hero h1{font-size:clamp(56px,13vw,76px)}.sr-version{margin-top:18px}.sr-lead{font-size:16px;margin:25px 0}.sr-hero-benefits{gap:13px}.sr-hero-benefits li{font-size:12px}.sr-actions{gap:20px;margin-top:28px}.sr-hero-art{order:2}.sr-environment{height:320px}.sr-laptop{left:10px;right:10px;bottom:26px;border-width:5px;border-bottom-width:8px}.sr-laptop:after{bottom:-15px;height:7px}.sr-rhythm,.sr-showcase,.sr-reading{display:flex;flex-direction:column;align-items:stretch;gap:26px}.sr-rhythm h2,.sr-showcase h2,.sr-comfort h2,.sr-future h2{font-size:clamp(38px,9vw,52px)}.sr-intro,.sr-showcase-copy>p{font-size:15px}.sr-feature-list{grid-template-columns:1fr 1fr;gap:0 16px}.sr-feature-list li{font-size:13px;min-height:72px;gap:8px}.sr-feature-list span{font-size:21px;width:24px}.sr-showcase{padding-block:65px}.sr-shot{min-height:310px}.sr-comfort-grid{grid-template-columns:1fr 1fr;gap:27px 16px;margin-top:36px}.sr-comfort-item,.sr-comfort-item:nth-child(3){padding:0;border:0}.sr-comfort-item h3{font-size:15px;margin-top:12px}.sr-comfort-item p{font-size:13px}.sr-future-list article{display:block}.sr-future-list span{display:inline-block;margin-top:14px}.sr-lower{display:block;padding-block:65px}.sr-lower>a{display:inline-block;margin-top:20px}}@media(max-width:390px){.sr-hero-benefits{gap:8px}.sr-hero-benefits li{font-size:11px}.sr-feature-list{grid-template-columns:1fr}.sr-comfort-grid{grid-template-columns:1fr 1fr}.sr-shot{min-height:270px}}
+.sr-reading-concept{margin:0;position:relative;overflow:hidden;border:1px solid var(--sr-line);box-shadow:0 22px 50px #3b2a1b12;background:var(--sr-paper-deep)}
+.sr-reading-concept img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.sr-reading-concept figcaption{position:absolute;left:14px;bottom:14px;background:var(--sr-paper);color:var(--sr-muted);border:1px solid var(--sr-line);border-radius:3px;padding:7px 10px;font-size:12px;line-height:1.35}
+@media(max-width:760px){.sr-reading-concept figcaption{left:10px;bottom:10px;max-width:calc(100% - 20px)}}
+.sr-section{padding-block:80px}
+.sr-hero{min-height:565px;padding-block:48px 70px}
+.sr-environment{height:470px}
+.sr-laptop img{aspect-ratio:auto;object-fit:contain}
+#library{grid-template-columns:1fr;gap:24px;padding-block:76px}
+#library .sr-showcase-copy{padding:0}
+#library .sr-showcase-copy>p{max-width:720px}
+#library .sr-real-shot{width:100%;max-width:1200px;justify-self:center}
+.sr-reading{padding-block:76px;grid-template-columns:1fr;gap:24px}
+.sr-reading .sr-showcase-copy{padding:0}
+.sr-reading .sr-showcase-copy>p{max-width:720px}
+.sr-reading .sr-theme-note{max-width:720px}
+.sr-reading-shot{width:100%;max-width:1200px;justify-self:center}
+.sr-lower{padding-block:72px}
+.sr-gallery{padding-block:76px;border-top:1px solid var(--sr-line)}
+.sr-gallery h2{font-size:clamp(40px,4vw,64px);line-height:1.18;letter-spacing:-.045em;margin:18px 0 12px}
+.sr-gallery-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:18px}
+.sr-gallery-item{display:block;min-width:0;padding:0;border:1px solid var(--sr-line);background:var(--sr-paper-deep);color:var(--sr-ink);text-align:left;cursor:zoom-in}
+.sr-gallery-item img{display:block;width:100%;height:260px;object-fit:contain;background:var(--sr-paper-deep)}
+.sr-gallery-item>span{display:flex;justify-content:space-between;gap:12px;padding:13px 16px;font-size:14px}
+.sr-gallery-item:hover,.sr-gallery-item:focus-visible{outline:2px solid var(--sr-wine);outline-offset:3px}
+.sr-gallery-dialog{max-width:min(94vw,1400px);max-height:94vh;padding:40px 24px 18px;border:1px solid var(--sr-line);background:var(--sr-paper);color:var(--sr-ink);box-shadow:0 25px 80px #0006}
+.sr-gallery-dialog::backdrop{background:#17110fd9}
+.sr-gallery-dialog img{display:block;max-width:100%;max-height:calc(94vh - 105px);width:auto;height:auto;object-fit:contain;margin:auto}
+.sr-gallery-dialog p{text-align:center;font-size:14px;margin:12px 0 0}
+.sr-gallery-close{position:absolute;right:8px;top:3px;border:0;background:transparent;color:var(--sr-ink);font-size:32px;line-height:1;cursor:pointer;padding:3px 10px}
+.sr-release-description{font-size:clamp(19px,2vw,28px);line-height:1.4;color:var(--sr-muted);margin:0 0 28px}
+.sr-release-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.sr-primary-disabled{opacity:.52;cursor:not-allowed;filter:none!important}
+.sr-release-actions .sr-primary{gap:24px;align-items:center;border:0;font-family:inherit;font-size:15px;line-height:1.3}
+.sr-coming-soon,.sr-release-link{font-size:14px;color:var(--sr-wine)}
+@media(max-width:1024px){.sr-hero{min-height:0}.sr-environment{height:420px}}
+@media(max-width:760px){.sr-section{padding-block:52px}.sr-hero{padding-block:43px 50px}.sr-environment{height:300px}#library,.sr-reading,.sr-gallery{padding-block:52px}#library .sr-real-shot{width:100%}.sr-gallery-grid{grid-template-columns:1fr;gap:14px}.sr-gallery-item img{height:auto;max-height:260px}.sr-lower{padding-block:52px}.sr-gallery-dialog{padding:38px 10px 12px}.sr-gallery-dialog img{max-height:calc(94vh - 90px)}}
+#library h2{font-size:clamp(38px,3.6vw,54px)}
+.sr-reading-highlights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;list-style:none;padding:0;margin:28px 0 0;max-width:720px}
+.sr-reading-highlights li{border-top:1px solid var(--sr-line);padding-top:12px;color:var(--sr-wine);font-size:14px;line-height:1.4}
+.sr-reading .sr-theme-note{margin-top:28px}
+.sr-gallery{background:var(--sr-paper-deep)}
+@media(max-width:760px){#library h2{font-size:clamp(34px,8vw,48px)}.sr-reading-highlights{gap:10px;margin-top:24px}.sr-reading-highlights li{font-size:12px}.sr-gallery-item img{max-height:330px}}
+</style>

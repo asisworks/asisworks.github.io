@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.astro/
+screenshots/
+screenshots-final/
+assets-local/
+as-is-works/
+.env
+.env.*
+!.env.example
+*.local

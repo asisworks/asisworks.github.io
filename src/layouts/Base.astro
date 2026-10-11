@@ -1,0 +1,8 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import type { Language } from '../i18n';
+const { lang = 'ru', title = 'As Is Works', path = '/' } = Astro.props as {lang?:Language;title?:string;path?:string};
+---
+<!doctype html><html lang={lang}><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="description" content="As Is Works — independent software studio"/><title>{title}</title><script is:inline>try{let p=localStorage.getItem('theme');if((p||((matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'))==='dark')document.documentElement.classList.add('dark')}catch(e){}</script></head><body><Header lang={lang} path={path}/><slot/><script is:inline>document.querySelectorAll('.langs a,.footer-controls a').forEach(a=>a.addEventListener('click',e=>{if(location.hash){e.preventDefault();location.href=a.href+location.hash}}));document.querySelectorAll('.theme').forEach(b=>b.addEventListener('click',()=>{const d=document.documentElement.classList.toggle('dark');try{localStorage.setItem('theme',d?'dark':'light')}catch(e){}}));</script></body></html>
+
