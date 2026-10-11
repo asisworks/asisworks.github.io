@@ -1,0 +1,20 @@
+{
+  "photo": "public/images/reader.jpg",
+  "photoSize": [589, 385],
+  "screenCorners": {
+    "topLeft": [35, 51],
+    "topRight": [524, 49],
+    "bottomRight": [528, 322],
+    "bottomLeft": [34, 320]
+  },
+  "sourceCrop": [0, 0, 1503, 829],
+  "renderScale": 2,
+  "screenshots": {
+    "ru": "screenshots-final/library-ru-light.png",
+    "en": "screenshots-final/library-en-light.png"
+  },
+  "outputs": {
+    "ru": "public/images/reader-screen-perspective-ru.png",
+    "en": "public/images/reader-screen-perspective-en.png"
+  }
+}

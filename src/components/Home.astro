@@ -2,17 +2,21 @@
 import Base from '../layouts/Base.astro';
 import { dictionary, type Language } from '../i18n';
 import { products, studio } from '../config';
+import readerScreenConfig from '../../scripts/reader-home-screen.json';
 const { lang } = Astro.props as {lang:Language};
 const t = dictionary[lang];
 const root = lang === 'ru' ? '/' : '/en/';
 const detail = (id:string) => `${root}${id}/`;
 const icons = ['◇','♧','▦','☺'];
+const readerScreenshot = `/${readerScreenConfig.outputs[lang].replace(/^public\//, '')}`;
+const { topLeft: screenTopLeft, topRight: screenTopRight, bottomRight: screenBottomRight, bottomLeft: screenBottomLeft } = readerScreenConfig.screenCorners;
+const readerScreenPath = `M${screenTopLeft.join(' ')} L${screenTopRight.join(' ')} L${screenBottomRight.join(' ')} L${screenBottomLeft.join(' ')} Z`;
 ---
 <Base lang={lang}>
 <main class="wrap">
   <section class="hero shell" id="top"><div class="hero-photo photo" role="img" aria-label="Books, plant and a cup in warm sunlight"></div><div class="hero-copy"><div class="eyebrow"><span></span><span class="overline">{t.eyebrow}</span></div><h1 class="serif">{t.heroA} <em>{t.heroAccent}</em> {t.heroB}</h1><p>{t.heroText}</p></div></section>
   <section class="catalog" id="programs" aria-label={t.programs}>
-    <article class="feature reader"><div class="feature-copy"><div class="number">01 <span></span></div><h2 class="serif">Seynera Reader</h2><div class="overline">{t.readerType}</div><p>{t.readerText}</p><a class="button" href={detail('seynera-reader')}>{t.more}<span aria-hidden="true">→</span></a><ul class="benefits"><li><b>▥</b>{t.readerBenefits[0]}</li><li><b>☷</b>{t.readerBenefits[1]}</li><li><b>▱</b>{t.readerBenefits[2]}</li></ul></div><div class="feature-photo photo" role="img" aria-label="Temporary product image from approved design"></div></article>
+    <article class="feature reader"><div class="feature-copy"><div class="number">01 <span></span></div><h2 class="reader-logo-title"><img class="reader-logo reader-logo-light" src="/images/seynera-reader-logo-light.svg" alt="Seynera Reader"/><img class="reader-logo reader-logo-dark" src="/images/seynera-reader-logo-dark.svg" alt="Seynera Reader"/></h2><div class="overline">{t.readerType}</div><p>{t.readerText}</p><a class="button" href={detail('seynera-reader')}>{t.more}<span aria-hidden="true">→</span></a><ul class="benefits"><li><b>▥</b>{t.readerBenefits[0]}</li><li><b>☷</b>{t.readerBenefits[1]}</li><li><b>▱</b>{t.readerBenefits[2]}</li></ul></div><div class="feature-photo photo" role="img" aria-label={lang === 'ru' ? 'Ноутбук с библиотекой Seynera Reader' : 'Laptop showing the Seynera Reader library'}><svg class="reader-photo-svg" viewBox="0 0 589 385" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><defs><path id="reader-screen-shape" d={readerScreenPath}/><mask id="reader-photo-cutout" maskUnits="userSpaceOnUse" x="0" y="0" width="589" height="385"><rect width="589" height="385" fill="white"/><use href="#reader-screen-shape" fill="black"/></mask></defs><image href={readerScreenshot} width="589" height="385"/><image href="/images/reader.jpg" width="589" height="385" mask="url(#reader-photo-cutout)"/></svg></div></article>
     <div class="secondary"><article class="feature compact vixa"><div class="feature-copy"><div class="number">02 <span></span></div><h2 class="serif">Vixa</h2><div class="overline">{t.vixaType}</div><p>{t.vixaText}</p><button class="button button-disabled" type="button" disabled>{t.development}</button><ul class="benefits"><li><b>▧</b>{t.vixaBenefits[0]}</li><li><b>◎</b>{t.vixaBenefits[1]}</li><li><b>□</b>{t.vixaBenefits[2]}</li></ul></div><div class="feature-photo photo" role="img" aria-label="Temporary product image from approved design"></div></article><article class="feature compact nova"><div class="feature-copy"><div class="number">03 <span></span></div><h2 class="serif">Nova Pulse</h2><div class="overline">{t.novaType}</div><p>{t.novaText}</p><button class="button button-disabled" type="button" disabled>{t.development}</button><ul class="benefits"><li><b>♩</b>{t.novaBenefits[0]}</li><li><b>◌</b>{t.novaBenefits[1]}</li><li><b>☷</b>{t.novaBenefits[2]}</li></ul></div><div class="feature-photo photo" role="img" aria-label="Temporary product image from approved design"></div></article></div>
   </section>
   <section class="values shell" id="about" aria-label={t.about}>{t.values.map((item,i)=><div class="value"><div class="value-icon" aria-hidden="true">{icons[i]}</div><h3>{item[0]}</h3><p>{item[1]}</p></div>)}</section>
@@ -82,6 +86,15 @@ const icons = ['◇','♧','▦','☺'];
   .benefits li,.compact .benefits li{font-size:12px;width:auto}
   .reader .feature-photo{height:245px}
 }
+.reader .feature-photo{background-image:none}
+.reader .feature-photo{mask-image:none;opacity:1}
+.reader::after{display:none}
+.reader-photo-svg{display:block;width:100%;height:100%}
+.reader h2.reader-logo-title{width:min(100%,300px);margin:18px 0 10px;font-size:0;line-height:0;letter-spacing:normal;white-space:normal}
+.reader-logo{display:block;width:100%;height:auto}
+.reader-logo-dark{display:none}
+:global(.dark) .reader-logo-light{display:none}
+:global(.dark) .reader-logo-dark{display:block}
 </style>
 
 

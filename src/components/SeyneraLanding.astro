@@ -19,7 +19,7 @@ const comfortMarks = ['◇','☷','▦','☼'];
     <section class="sr-hero sr-wrap">
       <div class="sr-hero-copy">
         <div class="sr-eyebrow">{t.eyebrow}</div>
-        <div class="sr-title-row"><h1 class="serif">Seynera<br/>Reader</h1><span class="sr-version">{t.version}</span></div>
+        <div class="sr-title-row"><h1 class="sr-brand-title"><img class="sr-brand-logo sr-logo-light" src="/images/seynera-reader-logo-light.svg" alt="Seynera Reader"/><img class="sr-brand-logo sr-logo-dark" src="/images/seynera-reader-logo-dark.svg" alt="Seynera Reader"/></h1><span class="sr-version">{t.version}</span></div>
         <p class="sr-lead">{t.heroDescription}</p>
         <ul class="sr-hero-benefits">{t.heroBenefits.map((benefit,i)=><li><span aria-hidden="true">{['▤','☷','▦'][i]}</span>{benefit}</li>)}</ul>
         <div class="sr-actions"><a class="sr-primary" href="#features">{t.featuresButton} <span aria-hidden="true">↓</span></a><span class="sr-status"><span aria-hidden="true"></span>{t.status}</span></div>
@@ -52,7 +52,7 @@ const comfortMarks = ['◇','☷','▦','☼'];
 
     <section class="sr-future sr-section sr-wrap" id="future"><div class="sr-kicker">06 / NEXT</div><h2 class="serif">{t.nextTitle}</h2><p class="sr-intro">{t.nextIntro}</p><div class="sr-future-list">{t.future.map(item=><article><div><h3>{item[0]}</h3><p>{item[2]}</p></div><span>{item[1]}</span></article>)}</div></section>
 
-    <section class="sr-lower sr-wrap"><div><div class="sr-kicker">AS IS WORKS / SEYNERA READER</div><h2 class="serif">{t.releaseTitle}</h2><p class="sr-release-description">{t.releaseDescription}</p><div class="sr-release-actions">{seyneraReleaseUrl ? <><a class="sr-primary" href={seyneraReleaseUrl}>{t.download} <span aria-hidden="true">↓</span></a><a class="sr-release-link" href={seyneraReleaseUrl}>{t.releaseLink} ↗</a></> : <><button class="sr-primary sr-primary-disabled" type="button" disabled>{t.download} <span aria-hidden="true">↓</span></button><span class="sr-coming-soon">{t.comingSoon}</span></>}</div></div><a href={`${home}#programs`}>← {t.back}</a></section>
+    <section class="sr-lower sr-wrap"><div><div class="sr-kicker">AS IS WORKS / SEYNERA READER</div><div class="sr-release-brand"><h2 class="sr-release-logo-title"><img class="sr-brand-logo sr-logo-light" src="/images/seynera-reader-logo-light.svg" alt="Seynera Reader"/><img class="sr-brand-logo sr-logo-dark" src="/images/seynera-reader-logo-dark.svg" alt="Seynera Reader"/></h2><span class="sr-release-version">1.1.0</span></div><p class="sr-release-description">{t.releaseDescription}</p><div class="sr-release-actions">{seyneraReleaseUrl ? <><a class="sr-primary" href={seyneraReleaseUrl}>{t.download} <span aria-hidden="true">↓</span></a><a class="sr-release-link" href={seyneraReleaseUrl}>{t.releaseLink} ↗</a></> : <><button class="sr-primary sr-primary-disabled" type="button" disabled>{t.download} <span aria-hidden="true">↓</span></button><span class="sr-coming-soon">{t.comingSoon}</span></>}</div></div><a href={`${home}#programs`}>← {t.back}</a></section>
   </main>
 </Base>
 <script>
@@ -114,4 +114,15 @@ const comfortMarks = ['◇','☷','▦','☼'];
 .sr-reading .sr-theme-note{margin-top:28px}
 .sr-gallery{background:var(--sr-paper-deep)}
 @media(max-width:760px){#library h2{font-size:clamp(34px,8vw,48px)}.sr-reading-highlights{gap:10px;margin-top:24px}.sr-reading-highlights li{font-size:12px}.sr-gallery-item img{max-height:330px}}
+.sr-title-row{align-items:center;flex-wrap:wrap;gap:12px 18px}
+.sr-hero h1.sr-brand-title{flex:0 1 450px;min-width:0;margin:0;font-size:0;line-height:0;letter-spacing:normal}
+.sr-brand-logo{display:block;width:100%;height:auto}
+.sr-logo-dark{display:none}
+:global(.dark) .sr-logo-light{display:none}
+:global(.dark) .sr-logo-dark{display:block}
+.sr-title-row .sr-version{margin-top:0}
+.sr-release-brand{display:flex;align-items:center;flex-wrap:wrap;gap:12px 22px;margin:17px 0 20px}
+.sr-lower h2.sr-release-logo-title{width:340px;max-width:100%;margin:0;font-size:0;line-height:0;letter-spacing:normal}
+.sr-release-version{color:var(--sr-wine);font-size:18px;white-space:nowrap}
+@media(max-width:760px){.sr-hero h1.sr-brand-title{flex-basis:100%;max-width:390px}.sr-release-brand{gap:8px 16px}.sr-lower h2.sr-release-logo-title{width:min(100%,300px)}}
 </style>
