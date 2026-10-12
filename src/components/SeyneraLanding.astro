@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import type { Language } from '../i18n';
 import { seyneraText } from '../seynera-i18n';
-import { seyneraReleaseUrl } from '../seynera-release';
+import { seyneraRelease, seyneraReleaseUrl } from '../seynera-release';
 const { lang } = Astro.props as {lang:Language};
 const t = seyneraText[lang];
 const home = lang === 'ru' ? '/' : '/en/';
@@ -22,7 +22,7 @@ const comfortMarks = ['◇','☷','▦','☼'];
         <div class="sr-title-row"><h1 class="sr-brand-title"><img class="sr-brand-logo sr-logo-light" src="/images/seynera-reader-logo-light.svg" alt="Seynera Reader"/><img class="sr-brand-logo sr-logo-dark" src="/images/seynera-reader-logo-dark.svg" alt="Seynera Reader"/></h1><span class="sr-version">{t.version}</span></div>
         <p class="sr-lead">{t.heroDescription}</p>
         <ul class="sr-hero-benefits">{t.heroBenefits.map((benefit,i)=><li><span aria-hidden="true">{['▤','☷','▦'][i]}</span>{benefit}</li>)}</ul>
-        <div class="sr-actions"><a class="sr-primary" href="#features">{t.featuresButton} <span aria-hidden="true">↓</span></a><span class="sr-status"><span aria-hidden="true"></span>{t.status}</span></div>
+        <div class="sr-actions"><a class="sr-primary" href="#features">{t.featuresButton} <span aria-hidden="true">↓</span></a><span class="sr-status"><span aria-hidden="true"></span>{seyneraRelease.status[lang]}</span></div>
       </div>
       <div class="sr-hero-art"><div class="sr-environment" role="img" aria-label="Books, plant and warm light"></div><div class="sr-laptop"><img src={libraryImage} alt={t.libraryScreenshot}/></div></div>
     </section>
@@ -52,7 +52,7 @@ const comfortMarks = ['◇','☷','▦','☼'];
 
     <section class="sr-future sr-section sr-wrap" id="future"><div class="sr-kicker">06 / NEXT</div><h2 class="serif">{t.nextTitle}</h2><p class="sr-intro">{t.nextIntro}</p><div class="sr-future-list">{t.future.map(item=><article><div><h3>{item[0]}</h3><p>{item[2]}</p></div><span>{item[1]}</span></article>)}</div></section>
 
-    <section class="sr-lower sr-wrap"><div><div class="sr-kicker">AS IS WORKS / SEYNERA READER</div><div class="sr-release-brand"><h2 class="sr-release-logo-title"><img class="sr-brand-logo sr-logo-light" src="/images/seynera-reader-logo-light.svg" alt="Seynera Reader"/><img class="sr-brand-logo sr-logo-dark" src="/images/seynera-reader-logo-dark.svg" alt="Seynera Reader"/></h2><span class="sr-release-version">1.1.0</span></div><p class="sr-release-description">{t.releaseDescription}</p><div class="sr-release-actions">{seyneraReleaseUrl ? <><a class="sr-primary" href={seyneraReleaseUrl}>{t.download} <span aria-hidden="true">↓</span></a><a class="sr-release-link" href={seyneraReleaseUrl}>{t.releaseLink} ↗</a></> : <><button class="sr-primary sr-primary-disabled" type="button" disabled>{t.download} <span aria-hidden="true">↓</span></button><span class="sr-coming-soon">{t.comingSoon}</span></>}</div></div><a href={`${home}#programs`}>← {t.back}</a></section>
+    <section class="sr-lower sr-wrap"><div><div class="sr-kicker">AS IS WORKS / SEYNERA READER</div><div class="sr-release-brand"><h2 class="sr-release-logo-title"><img class="sr-brand-logo sr-logo-light" src="/images/seynera-reader-logo-light.svg" alt="Seynera Reader"/><img class="sr-brand-logo sr-logo-dark" src="/images/seynera-reader-logo-dark.svg" alt="Seynera Reader"/></h2><span class="sr-release-version">1.1.0</span></div><p class="sr-release-description">{t.releaseDescription}</p><div class="sr-release-actions"><a class="sr-primary" href={seyneraReleaseUrl}>{t.download} <span aria-hidden="true">↓</span></a><a class="sr-release-link" href={seyneraReleaseUrl}>{t.releaseLink} ↗</a></div><div class="sr-install-info"><p>{t.installationInfo}</p><p>{t.unsignedNotice}</p><details><summary>{t.checksumLabel}</summary><code>{seyneraRelease.sha256}</code><a href={seyneraRelease.checksumUrl}>{t.checksumFile} ↗</a></details></div></div><a href={`${home}#programs`}>← {t.back}</a></section>
   </main>
 </Base>
 <script>
@@ -134,4 +134,7 @@ const comfortMarks = ['◇','☷','▦','☼'];
 .sr-hero-benefits{min-height:66px}
 @media(max-width:1190px){.sr-title-row{grid-template-columns:minmax(0,450px)}.sr-title-row .sr-version{justify-self:start}}
 @media(max-width:760px){.sr-hero-copy{align-self:stretch}.sr-eyebrow{min-height:33px}.sr-title-row{display:grid;grid-template-columns:minmax(0,390px);row-gap:14px}.sr-hero h1.sr-brand-title{max-width:390px}.sr-lead{min-height:72px}.sr-hero-benefits{min-height:64px}.sr-actions{flex-direction:column;align-items:flex-start;gap:14px}}
+</style>
+<style>
+.sr-lower>div{min-width:0}.sr-install-info{max-width:650px;margin-top:20px;font-size:13px;line-height:1.6;color:var(--sr-muted)}.sr-install-info p{margin:0 0 8px}.sr-install-info summary{cursor:pointer;color:var(--sr-wine)}.sr-install-info code{display:block;overflow-wrap:anywhere;margin:10px 0;font-size:12px}.sr-install-info a{color:var(--sr-wine);text-decoration:underline;text-underline-offset:3px}
 </style>

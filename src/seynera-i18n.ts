@@ -1,6 +1,6 @@
 export const seyneraText = {
   ru: {
-    eyebrow:'ЧТЕНИЕ, КОТОРОЕ ВДОХНОВЛЯЕТ', version:'Версия 1.1.0', status:'Готовится к выпуску',
+    eyebrow:'ЧТЕНИЕ, КОТОРОЕ ВДОХНОВЛЯЕТ', version:'Версия 1.1.0',
     heroDescription:'Удобная и настраиваемая читалка электронных книг для комфортного чтения в любое время',
     heroBenefits:['Поддержка FB2 и EPUB','Гибкие настройки','Удобная библиотека'], featuresButton:'Возможности',
     rhythmTitle:'Чтение в своём ритме', rhythmDescription:'Seynera Reader сочетает простоту и функциональность. Всё, что нужно для комфортного чтения, собрано в одном приложении',
@@ -13,10 +13,10 @@ export const seyneraText = {
     lower:'Seynera Reader 1.1.0. Удобное чтение электронных книг для Windows',
     libraryScreenshot:'Библиотека Seynera Reader со своими книгами',readingScreenshot:'Режим чтения Seynera Reader',back:'Вернуться к программам',
     galleryTitle:'Программа в деталях',galleryIntro:'Посмотрите, как выглядит Seynera Reader в работе',galleryImages:['Библиотека · Светлая тема','Библиотека · Тёмная тема','Режим чтения','Настройки чтения'],galleryOpen:'Увеличить скриншот',galleryClose:'Закрыть',
-    releaseTitle:'Seynera Reader 1.1.0',releaseDescription:'Удобное чтение электронных книг для Windows',download:'Скачать для Windows',comingSoon:'Скоро доступно',releaseLink:'GitHub Releases',
+    releaseTitle:'Seynera Reader 1.1.0',releaseDescription:'Удобное чтение электронных книг для Windows',download:'Скачать для Windows',installationInfo:'Windows 10/11 x64 · Установщик ≈ 88,4 МиБ', unsignedNotice:'Установщик пока не подписан цифровым сертификатом. Windows может показать предупреждение при запуске.', checksumLabel:'Контрольная сумма SHA-256', checksumFile:'Файл контрольной суммы',releaseLink:'GitHub Releases',
   },
   en: {
-    eyebrow:'READING THAT INSPIRES',version:'Version 1.1.0',status:'Preparing for release',
+    eyebrow:'READING THAT INSPIRES',version:'Version 1.1.0',
     heroDescription:'A comfortable, customizable e-book reader for enjoying books whenever you like',
     heroBenefits:['FB2 and EPUB support','Flexible settings','A convenient library'],featuresButton:'Features',
     rhythmTitle:'Read at your own pace',rhythmDescription:'Seynera Reader combines simplicity and useful features. Everything you need for comfortable reading is in one application.',
@@ -29,6 +29,6 @@ export const seyneraText = {
     lower:'Seynera Reader 1.1.0. Comfortable e-book reading for Windows',
     libraryScreenshot:'Seynera Reader library with real books',readingScreenshot:'Seynera Reader reading view',back:'Back to programs',
     galleryTitle:'A closer look',galleryIntro:'See Seynera Reader in action',galleryImages:['Library · Light theme','Library · Dark theme','Reading view','Reading settings'],galleryOpen:'Enlarge screenshot',galleryClose:'Close',
-    releaseTitle:'Seynera Reader 1.1.0',releaseDescription:'Comfortable e-book reading for Windows',download:'Download for Windows',comingSoon:'Coming soon',releaseLink:'GitHub Releases',
+    releaseTitle:'Seynera Reader 1.1.0',releaseDescription:'Comfortable e-book reading for Windows',download:'Download for Windows',installationInfo:'Windows 10/11 x64 · Installer ≈ 88.4 MiB', unsignedNotice:'The installer is not digitally signed yet. Windows may show a warning when you run it.', checksumLabel:'SHA-256 checksum', checksumFile:'Checksum file',releaseLink:'GitHub Releases',
   }
 } as const;
