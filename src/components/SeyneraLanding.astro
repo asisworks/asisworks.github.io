@@ -125,4 +125,13 @@ const comfortMarks = ['◇','☷','▦','☼'];
 .sr-lower h2.sr-release-logo-title{width:340px;max-width:100%;margin:0;font-size:0;line-height:0;letter-spacing:normal}
 .sr-release-version{color:var(--sr-wine);font-size:18px;white-space:nowrap}
 @media(max-width:760px){.sr-hero h1.sr-brand-title{flex-basis:100%;max-width:390px}.sr-release-brand{gap:8px 16px}.sr-lower h2.sr-release-logo-title{width:min(100%,300px)}}
+.sr-hero{align-items:start}
+.sr-hero-copy{align-self:center;width:100%}
+.sr-title-row{display:grid;grid-template-columns:minmax(0,450px) max-content;align-items:center;column-gap:18px;row-gap:14px}
+.sr-hero h1.sr-brand-title{width:100%;max-width:450px}
+.sr-title-row .sr-version{min-width:110px;text-align:center}
+.sr-lead{min-height:86px}
+.sr-hero-benefits{min-height:66px}
+@media(max-width:1190px){.sr-title-row{grid-template-columns:minmax(0,450px)}.sr-title-row .sr-version{justify-self:start}}
+@media(max-width:760px){.sr-hero-copy{align-self:stretch}.sr-eyebrow{min-height:33px}.sr-title-row{display:grid;grid-template-columns:minmax(0,390px);row-gap:14px}.sr-hero h1.sr-brand-title{max-width:390px}.sr-lead{min-height:72px}.sr-hero-benefits{min-height:64px}.sr-actions{flex-direction:column;align-items:flex-start;gap:14px}}
 </style>
