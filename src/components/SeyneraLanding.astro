@@ -22,7 +22,8 @@ const comfortMarks = ['◇','☷','▦','☼'];
         <div class="sr-title-row"><h1 class="sr-brand-title"><img class="sr-brand-logo sr-logo-light" src="/images/seynera-reader-logo-light.svg" alt="Seynera Reader"/><img class="sr-brand-logo sr-logo-dark" src="/images/seynera-reader-logo-dark.svg" alt="Seynera Reader"/></h1><span class="sr-version">{t.version}</span></div>
         <p class="sr-lead">{t.heroDescription}</p>
         <ul class="sr-hero-benefits">{t.heroBenefits.map((benefit,i)=><li><span aria-hidden="true">{['▤','☷','▦'][i]}</span>{benefit}</li>)}</ul>
-        <div class="sr-actions"><a class="sr-primary" href="#features">{t.featuresButton} <span aria-hidden="true">↓</span></a><span class="sr-status"><span aria-hidden="true"></span>{seyneraRelease.status[lang]}</span></div>
+        <div class="sr-actions"><a class="sr-primary" href={seyneraReleaseUrl}>{t.download}<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></svg></a><a class="sr-secondary" href="#features">{t.featuresButton}<span aria-hidden="true">↓</span></a></div>
+        <p class="sr-hero-platform">{t.heroPlatform}</p>
       </div>
       <div class="sr-hero-art"><div class="sr-environment" role="img" aria-label="Books, plant and warm light"></div><div class="sr-laptop"><img src={libraryImage} alt={t.libraryScreenshot}/></div></div>
     </section>
@@ -136,5 +137,11 @@ const comfortMarks = ['◇','☷','▦','☼'];
 @media(max-width:760px){.sr-hero-copy{align-self:stretch}.sr-eyebrow{min-height:33px}.sr-title-row{display:grid;grid-template-columns:minmax(0,390px);row-gap:14px}.sr-hero h1.sr-brand-title{max-width:390px}.sr-lead{min-height:72px}.sr-hero-benefits{min-height:64px}.sr-actions{flex-direction:column;align-items:flex-start;gap:14px}}
 </style>
 <style>
+.sr-hero .sr-actions{flex-direction:row;align-items:stretch;gap:12px}
+.sr-hero .sr-actions a{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-width:0;padding:14px 18px;border:1px solid var(--sr-wine);border-radius:3px;font-size:15px;line-height:1.3}
+.sr-secondary{color:var(--sr-wine);background:transparent}
+.sr-secondary:hover{background:var(--sr-paper-deep)}
+.sr-hero-platform{margin:12px 0 0;color:var(--sr-muted);font-size:12px;line-height:1.5}
+@media(max-width:480px){.sr-hero .sr-actions{flex-direction:column}.sr-hero .sr-actions a{width:100%}}
 .sr-lower>div{min-width:0}.sr-install-info{max-width:650px;margin-top:20px;font-size:13px;line-height:1.6;color:var(--sr-muted)}.sr-install-info p{margin:0 0 8px}.sr-install-info summary{cursor:pointer;color:var(--sr-wine)}.sr-install-info code{display:block;overflow-wrap:anywhere;margin:10px 0;font-size:12px}.sr-install-info a{color:var(--sr-wine);text-decoration:underline;text-underline-offset:3px}
 </style>
