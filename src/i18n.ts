@@ -11,7 +11,7 @@ export const dictionary = {
   },
   en: {
     programs:'Programs', about:'About', contacts:'Contact', more:'Explore', development:'In development', back:'Back to catalog', menu:'Open menu', theme:'Toggle theme',
-    eyebrow:'SIMPLE SOLUTIONS FOR IMPORTANT TASKS', heroA:'Software you will', heroAccent:'love', heroB:'to use', heroText:'We create thoughtful, easy-to-use apps for reading, working with photos and sound, and other everyday tasks.',
+    eyebrow:'SIMPLE SOLUTIONS\nFOR EVERYDAY LIFE', heroA:'Software you will', heroAccent:'love', heroB:'to use', heroText:'We create thoughtful, easy-to-use apps for reading, working with photos and sound, and other everyday tasks.',
     readerType:'E-BOOK READING', readerText:'A comfortable, customizable reader for enjoying books whenever you like', readerBenefits:['FB2 and EPUB support','Flexible settings','A handy library'],
     vixaType:'PHOTO VIEWING AND SORTING', vixaText:'A fast, convenient photo viewer for sorting, comparing, and organizing collections', vixaBenefits:['Fast viewing','Photo comparison','Easy organization'],
     novaType:'AUDIO RECORDING AND PROCESSING', novaText:'A simple, effective audio recorder for everyday and professional tasks', novaBenefits:['Audio recording','WAV → MP3 conversion','Easy listening'],
