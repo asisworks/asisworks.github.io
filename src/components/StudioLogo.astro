@@ -1,0 +1,16 @@
+---
+const { variant = 'a' } = Astro.props as { variant?: 'a' | 'b' };
+const prefix = variant === 'b' ? 'asisworks-horizontal' : 'legacy-horizontal';
+---
+<span class:list={['studio-logo', {'studio-logo-b':variant === 'b'}]}>
+  <img class="studio-logo-light" src={`/images/asisworks/${prefix}-light.svg`} alt="asis.works" width={variant === 'b' ? 366.00263824465 : 336} height="128"/>
+  <img class="studio-logo-dark" src={`/images/asisworks/${prefix}-dark.svg`} alt="asis.works" width={variant === 'b' ? 366.00263824465 : 336} height="128"/>
+</span>
+<style>
+.studio-logo{display:block;width:168px;max-width:100%;line-height:0}
+.studio-logo-b{width:183.001319122325px}
+.studio-logo img{display:block;width:100%;height:auto}
+.studio-logo .studio-logo-dark{display:none}
+:global(.dark) .studio-logo .studio-logo-light{display:none}
+:global(.dark) .studio-logo .studio-logo-dark{display:block}
+</style>

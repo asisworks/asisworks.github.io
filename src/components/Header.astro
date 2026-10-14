@@ -2,6 +2,7 @@
 import type { Language } from '../i18n';
 import { dictionary } from '../i18n';
 import { studio } from '../config';
+import StudioLogo from './StudioLogo.astro';
 const { lang, path = '/' } = Astro.props as { lang: Language; path?: string };
 const t = dictionary[lang];
 const root = lang === 'ru' ? '/' : '/en/';
@@ -9,7 +10,7 @@ const other = lang === 'ru' ? 'en' : 'ru';
 const alternate = `${other === 'ru' ? '' : '/en'}${path}`;
 ---
 <header class="header shell wrap">
-  <a class="brand" href={root} aria-label="As Is Works"><strong><span>as is</span><i>.</i> works</strong><small>INDEPENDENT SOFTWARE STUDIO</small></a>
+  <a class="brand" href={root} aria-label="As Is Works"><StudioLogo variant={path === '/' ? 'b' : 'a'}/></a>
   <button class="menu-toggle" aria-label={t.menu} aria-expanded="false" aria-controls="main-nav">☰</button>
   <nav id="main-nav" class="nav" aria-label="Main navigation">
     <a href={`${root}#programs`}>{t.programs}</a><a href={`${root}#about`}>{t.about}</a><a href={`${root}#contacts`}>{t.contacts}</a>
@@ -29,4 +30,5 @@ const alternate = `${other === 'ru' ? '' : '/en'}${path}`;
 <style>
 .header{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:28px;position:relative;z-index:10}.brand{display:flex;flex-direction:column;line-height:1}.brand strong{font-size:29px;letter-spacing:-.07em;font-weight:700;white-space:nowrap}.brand strong span{color:#063545}.brand i{font-style:normal;color:var(--accent)}.brand small{font-size:6px;letter-spacing:.42em;margin-top:5px;white-space:nowrap}.nav{display:flex;align-items:center;gap:26px;font-size:13px}.nav>a:hover,.langs a:hover{color:var(--accent)}.divider{height:25px;border-left:1px solid var(--line)}.langs{display:flex;gap:18px}.langs a.active{color:var(--accent)}.theme{display:flex;align-items:center;gap:6px;border:0;background:none;color:var(--muted);cursor:pointer;padding:4px}.switch{width:35px;height:20px;border-radius:20px;background:var(--accent);position:relative}.switch:after{content:'';width:16px;height:16px;border-radius:50%;background:white;position:absolute;top:2px;left:17px;transition:transform .2s}.dark .switch:after{transform:translateX(-15px)}.menu-toggle{display:none;border:0;background:none;color:var(--text);font-size:24px;cursor:pointer}@media(max-width:800px){.header{min-height:72px}.menu-toggle{display:block}.nav{display:none;position:absolute;top:70px;right:18px;left:18px;background:var(--surface);padding:22px;box-shadow:0 14px 32px #0002;flex-wrap:wrap}.nav.open{display:flex}.nav>a{width:100%;font-size:16px}.divider{display:none}.langs{margin-right:auto}}
 :global(.dark) .brand strong span{color:var(--text)}
+@media(max-width:800px){.brand :global(.studio-logo-b){width:201.301451034558px}}
 </style>
